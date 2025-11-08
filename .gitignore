@@ -1,0 +1,105 @@
+# 🔒 Security - NEVER commit these!
+.env
+.env.*
+*.env
+env/
+venv/
+.venv/
+
+# API Keys & Credentials
+*_api_key*
+*_secret*
+*.key
+*.pem
+*.cert
+credentials.json
+secrets.json
+auth.json
+config.secret.lua
+
+# Personal Data
+personal/
+private/
+.personal/
+.private/
+
+# System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.nvim/
+.vim/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
+bower_components/
+
+# Build outputs
+dist/
+build/
+out/
+*.o
+*.so
+*.dylib
+*.dll
+
+# Temporary files
+tmp/
+temp/
+cache/
+.cache/
+*.tmp
+*.bak
+*.backup
+
+# LunarVim specific
+plugin/
+.netrwhist
+undodir/
+sessions/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.Python
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Archives
+*.tar
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# OS generated
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Codeium
+.codeium/
+
+# Never commit these MongoDB URIs or credentials!
+mongodb_uri.txt
+atlas_credentials.json
+connection_string.txt
