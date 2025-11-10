@@ -1,9 +1,3 @@
--- 🐾✨ NEKO-ARC LUNARVIM CONFIGURATION ✨🐾
--- Version: 1.0.0
--- Author: wakibaka + Neko-Arc
--- Description: Ultimate LunarVim setup with 6 personalities and project management
--- GitHub: https://github.com/JavierCollipal/lunarvim-neko-config
-
 -- Read the docs: https://www.lunarvim.org/docs/configuration
 -- Example configs: https://github.com/LunarVim/starter.lvim
 -- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
@@ -97,7 +91,7 @@ lvim.builtin.cmp.preselect = require('cmp').PreselectMode.None
 -- Better search and replace
 lvim.builtin.which_key.mappings["s"]["r"] = { "<cmd>lua require('spectre').open()<CR>", "Replace" }
 
--- Pro keybindings
+-- Pro keybindings for Dvorak users
 lvim.keys.normal_mode["<leader>lf"] = "<cmd>lua vim.lsp.buf.format({ async = true })<CR>"
 lvim.keys.normal_mode["<leader>lr"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
 lvim.keys.normal_mode["<leader>la"] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
@@ -117,10 +111,9 @@ lvim.builtin.gitsigns.opts.current_line_blame_opts.delay = 300
 
 -- Add more professional plugins
 table.insert(lvim.plugins, {
-  -- Copilot-like AI completion (requires authentication)
+  -- Copilot-like AI completion
   "Exafunction/codeium.vim",
   config = function()
-    -- NOTE: You need to run :Codeium Auth after installation
     vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
     vim.keymap.set('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
     vim.keymap.set('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
@@ -171,7 +164,7 @@ table.insert(lvim.plugins, {
 })
 
 table.insert(lvim.plugins, {
-  -- 🌈 Rainbow brackets
+  -- 🌈 Rainbow brackets - Mario's theatrical touch!
   "HiPhish/rainbow-delimiters.nvim",
   config = function()
     require('rainbow-delimiters.setup').setup {
@@ -189,7 +182,7 @@ table.insert(lvim.plugins, {
 })
 
 table.insert(lvim.plugins, {
-  -- ✨ Beautiful todo comments
+  -- ✨ Beautiful todo comments - Neko's kawaii highlights!
   "folke/todo-comments.nvim",
   config = function()
     require("todo-comments").setup {
@@ -208,7 +201,7 @@ table.insert(lvim.plugins, {
 })
 
 table.insert(lvim.plugins, {
-  -- 🎨 Beautiful notifications
+  -- 🎨 Beautiful notifications - All six personalities approve!
   "rcarriga/nvim-notify",
   config = function()
     require("notify").setup({
@@ -222,7 +215,7 @@ table.insert(lvim.plugins, {
 })
 
 table.insert(lvim.plugins, {
-  -- 🌟 Smooth scrolling
+  -- 🌟 Glam's smooth scrolling!
   "karb94/neoscroll.nvim",
   config = function()
     require('neoscroll').setup({
@@ -324,7 +317,20 @@ lvim.builtin.alpha.dashboard.section.footer.val = {
   "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
 }
 
--- Neko pet keybindings for maximum kawaii (optional plugin)
+-- 🐾 NEKO VIRTUAL PET INTEGRATION - NYA NYA NYA~ 🐾
+-- Configure neko pet behavior (optional) - protected require
+local neko_pet_ok, neko_pet = pcall(require, "user.neko-pet")
+if neko_pet_ok then
+  neko_pet.setup({
+    auto_launch_terminal = false,   -- Disabled: No separate terminal window
+    auto_start_animation = true,    -- Enabled: Cute neko icon in statusline!
+    mood_timer_minutes = 10,        -- Random mood messages every X minutes
+  })
+else
+  -- Neko pet module not found, that's okay! Still kawaii without it, nyaa~! 🐾
+end
+
+-- Neko pet keybindings for maximum kawaii
 lvim.keys.normal_mode["<leader>nd"] = "<cmd>NekoDance<CR>"  -- Dance command
 lvim.keys.normal_mode["<leader>nt"] = "<cmd>NekoTerminal<CR>"  -- Enhanced terminal pet
 lvim.keys.normal_mode["<leader>nm"] = "<cmd>NekoMood<CR>"  -- Show mood
@@ -445,6 +451,8 @@ export default ]] .. filename .. [[;
 }
 
 -- 🚀✨🐾 PROJECT MANAGEMENT SYSTEM WITH NEKO POWER! 🐾✨🚀
+-- Nyaa~! All 56 GitHub projects configured for quick access, desu~!
+
 -- Install project.nvim plugin for advanced project management
 table.insert(lvim.plugins, {
   "ahmedkhalf/project.nvim",
@@ -452,6 +460,7 @@ table.insert(lvim.plugins, {
     require("project_nvim").setup({
       detection_methods = { "pattern" },
       patterns = { ".git", "package.json", "tsconfig.json", "Makefile", ".gitignore" },
+      -- All projects are under the github directory (IMMUTABLE RULE #1!)
       exclude_dirs = { "node_modules", ".git", "dist", "build" },
       show_hidden = false,
     })
@@ -461,16 +470,86 @@ table.insert(lvim.plugins, {
   end
 })
 
--- 🚀 PROJECT CONFIGURATION 🚀
--- Users should customize this section with their own projects!
--- Example structure provided below:
-
+-- 🐾 WAKIBAKA'S GITHUB PROJECTS - ALL 56 REPOSITORIES! 🐾
+-- Quick access to all projects via telescope project picker
 local projects = {
-  -- Add your own projects here!
-  -- Example:
-  -- { name = "🚀 My Awesome Project", path = "~/projects/awesome-project" },
-  -- { name = "🎨 Portfolio Website", path = "~/projects/portfolio" },
-  -- { name = "🤖 AI Assistant", path = "~/projects/ai-assistant" },
+  -- 🎭 Neko Core Systems
+  { name = "🐾 neko-defense-dashboard", path = "/home/wakibaka/Documents/github/neko-defense-dashboard" },
+  { name = "🛡️ neko-defense-api", path = "/home/wakibaka/Documents/github/neko-defense-api" },
+  { name = "🏗️ neko-defense-framework", path = "/home/wakibaka/Documents/github/neko-defense-framework" },
+  { name = "⚡ neko-defense-nextjs", path = "/home/wakibaka/Documents/github/neko-defense-nextjs" },
+  { name = "🔒 neko-defense-system", path = "/home/wakibaka/Documents/github/neko-defense-system" },
+
+  -- 🎬 Neko Specialized Systems
+  { name = "😺 neko-arc", path = "/home/wakibaka/Documents/github/neko-arc" },
+  { name = "📝 neko-arc-master-prompt", path = "/home/wakibaka/Documents/github/neko-arc-master-prompt" },
+  { name = "🎯 neko-arc-prompt", path = "/home/wakibaka/Documents/github/neko-arc-prompt" },
+  { name = "📊 neko-ability-tracker", path = "/home/wakibaka/Documents/github/neko-ability-tracker" },
+  { name = "🎭 neko-mario-theater", path = "/home/wakibaka/Documents/github/neko-mario-theater" },
+
+  -- 🕵️ Investigation & Security
+  { name = "🔍 neko-criminal-investigation", path = "/home/wakibaka/Documents/github/neko-criminal-investigation" },
+  { name = "👶 neko-child-protection", path = "/home/wakibaka/Documents/github/neko-child-protection" },
+  { name = "🍯 neko-honeypot-swarm", path = "/home/wakibaka/Documents/github/neko-honeypot-swarm" },
+  { name = "🎯 neko-hunt-orchestrator", path = "/home/wakibaka/Documents/github/neko-hunt-orchestrator" },
+  { name = "🐝 neko-hunt-swarm", path = "/home/wakibaka/Documents/github/neko-hunt-swarm" },
+
+  -- 🎮 Media & Visual Systems
+  { name = "📺 neko-tv-security", path = "/home/wakibaka/Documents/github/neko-tv-security" },
+  { name = "🎥 neko-video-tools", path = "/home/wakibaka/Documents/github/neko-video-tools" },
+  { name = "🌐 neko-video-web", path = "/home/wakibaka/Documents/github/neko-video-web" },
+  { name = "🎬 wakibaka-youtube-videos", path = "/home/wakibaka/Documents/github/wakibaka-youtube-videos" },
+  { name = "🎮 wakibaka-game-recordings", path = "/home/wakibaka/Documents/github/wakibaka-game-recordings" },
+
+  -- 🔧 Technical Infrastructure
+  { name = "☸️ neko-k8s-manifests", path = "/home/wakibaka/Documents/github/neko-k8s-manifests" },
+  { name = "🤖 neko-rag-system", path = "/home/wakibaka/Documents/github/neko-rag-system" },
+  { name = "💾 neko-database-backups", path = "/home/wakibaka/Documents/github/neko-database-backups" },
+  { name = "🔄 neko-session-resilience", path = "/home/wakibaka/Documents/github/neko-session-resilience" },
+  { name = "📖 neko-documentation", path = "/home/wakibaka/Documents/github/neko-documentation" },
+
+  -- 🎭 Puppeteer & Automation
+  { name = "🎪 puppeteer-operations", path = "/home/wakibaka/Documents/github/puppeteer-operations" },
+  { name = "🤖 puppeteer-microservice", path = "/home/wakibaka/Documents/github/puppeteer-microservice" },
+  { name = "📸 neko-puppeteer-screenshots", path = "/home/wakibaka/Documents/github/neko-puppeteer-screenshots" },
+  { name = "✅ neko-verification-screenshots", path = "/home/wakibaka/Documents/github/neko-verification-screenshots" },
+  { name = "🐛 neko-api-debug-screenshots", path = "/home/wakibaka/Documents/github/neko-api-debug-screenshots" },
+
+  -- 🌍 Deployment & Exposure
+  { name = "🌏 neko-worldwide-deployer", path = "/home/wakibaka/Documents/github/neko-worldwide-deployer" },
+  { name = "📡 neko-exposure-system", path = "/home/wakibaka/Documents/github/neko-exposure-system" },
+  { name = "🎯 neko-dequienes-microservice", path = "/home/wakibaka/Documents/github/neko-dequienes-microservice" },
+  { name = "🕷️ neko-web-scraper", path = "/home/wakibaka/Documents/github/neko-web-scraper" },
+  { name = "⚰️ neko-memorial-scraper", path = "/home/wakibaka/Documents/github/neko-memorial-scraper" },
+
+  -- 🇨🇱 Chilean Systems
+  { name = "⚖️ chilean-law-rag-system", path = "/home/wakibaka/Documents/github/chilean-law-rag-system" },
+  { name = "👮 carabineros-data-archive", path = "/home/wakibaka/Documents/github/carabineros-data-archive" },
+  { name = "📊 carabineros-data-viewer", path = "/home/wakibaka/Documents/github/carabineros-data-viewer" },
+  { name = "🖼️ carabineros-frames", path = "/home/wakibaka/Documents/github/carabineros-frames" },
+
+  -- 🔧 Claude & Development Tools
+  { name = "🤖 claude-code-master-prompt", path = "/home/wakibaka/Documents/github/claude-code-master-prompt" },
+  { name = "🛠️ claude-operations", path = "/home/wakibaka/Documents/github/claude-operations" },
+
+  -- 🎮 Gaming & Hardware
+  { name = "🎹 mbtl-dvorak-keymap", path = "/home/wakibaka/Documents/github/mbtl-dvorak-keymap" },
+  { name = "🔢 asus-numberpad-driver", path = "/home/wakibaka/Documents/github/asus-numberpad-driver" },
+  { name = "⌨️ sonixqmk-firmware", path = "/home/wakibaka/Documents/github/sonixqmk-firmware" },
+
+  -- 🌟 Special Projects
+  { name = "😈 beelzebub", path = "/home/wakibaka/Documents/github/beelzebub" },
+  { name = "🌻 sunlit-garden", path = "/home/wakibaka/Documents/github/sunlit-garden" },
+  { name = "🎭 triple-personality-video-api", path = "/home/wakibaka/Documents/github/triple-personality-video-api" },
+  { name = "🎮 funa-miguelito", path = "/home/wakibaka/Documents/github/funa-miguelito" },
+
+  -- 🔐 Citrix & VPN
+  { name = "🔒 citrix-vpn-ubuntu-installer", path = "/home/wakibaka/Documents/github/citrix-vpn-ubuntu-installer" },
+  { name = "⚡ citrix-advance", path = "/home/wakibaka/Documents/github/citrix-advance" },
+
+  -- 📁 System & Version Control
+  { name = "🔄 neko system version zero", path = "/home/wakibaka/Documents/github/neko system version zero" },
+  { name = "📁 remaining", path = "/home/wakibaka/Documents/github/remaining" },
 }
 
 -- 🚀 Add custom keymaps for quick project access
@@ -480,9 +559,23 @@ lvim.builtin.which_key.mappings["p"] = {
   r = { "<cmd>Telescope oldfiles<CR>", "📂 Recent Files" },
   f = { "<cmd>Telescope find_files<CR>", "🔎 Find File" },
   g = { "<cmd>Telescope live_grep<CR>", "🔍 Live Grep" },
-  -- Add quick access to your favorite projects here!
-  -- Example:
-  -- a = { "<cmd>cd ~/projects/awesome-project<CR>", "Awesome Project" },
+  n = {
+    name = "🐾 Neko Projects",
+    d = { "<cmd>cd /home/wakibaka/Documents/github/neko-defense-dashboard<CR>", "Defense Dashboard" },
+    a = { "<cmd>cd /home/wakibaka/Documents/github/neko-arc<CR>", "Neko Arc" },
+    h = { "<cmd>cd /home/wakibaka/Documents/github/neko-hunt-swarm<CR>", "Hunt Swarm" },
+    m = { "<cmd>cd /home/wakibaka/Documents/github/neko-mario-theater<CR>", "Mario Theater" },
+  },
+  c = {
+    name = "🤖 Claude Projects",
+    o = { "<cmd>cd /home/wakibaka/Documents/github/claude-operations<CR>", "Claude Operations" },
+    p = { "<cmd>cd /home/wakibaka/Documents/github/claude-code-master-prompt<CR>", "Master Prompt" },
+  },
+  w = {
+    name = "🎬 Wakibaka Media",
+    y = { "<cmd>cd /home/wakibaka/Documents/github/wakibaka-youtube-videos<CR>", "YouTube Videos" },
+    g = { "<cmd>cd /home/wakibaka/Documents/github/wakibaka-game-recordings<CR>", "Game Recordings" },
+  },
 }
 
 -- 🌟 Quick project switcher function
@@ -490,11 +583,6 @@ local function quick_project_switch()
   local project_list = {}
   for _, proj in ipairs(projects) do
     table.insert(project_list, proj.name .. " → " .. proj.path)
-  end
-
-  if #project_list == 0 then
-    vim.notify("📁 No projects configured yet! Add them in config.lua", "info")
-    return
   end
 
   vim.ui.select(project_list, {
@@ -513,7 +601,3 @@ end
 -- Add quick project switch to keymaps
 lvim.keys.normal_mode["<leader>ps"] = function() quick_project_switch() end
 lvim.builtin.which_key.mappings["p"]["s"] = { function() quick_project_switch() end, "🚀 Quick Switch" }
-
--- 🎯 END OF CONFIGURATION 🎯
--- Enjoy your supreme LunarVim setup with six personalities!
--- Nyaa~! 🐾✨
